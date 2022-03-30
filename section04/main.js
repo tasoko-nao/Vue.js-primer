@@ -13,6 +13,15 @@ var getUsers = function(callback) {
   }, 1000)
 }
 
+var getUser = function(userId, callback) {
+    setTimeout(function(){
+      var filteredUsers = userData.filter(function(user){
+        return user.id === parseInt(userId, 10)
+      })
+      callback(null, filteredUsers && filteredUsers[0])
+    }, 1000)
+}
+// ------------------------------------------------- component -------------------------------------------------
 var UserList = {
   template: '#user-list',
   data: function() {
@@ -43,7 +52,9 @@ var UserList = {
   }
 }
 
+var user
 
+// ------------------------------------------------- router -------------------------------------------------
 var router = new VueRouter({
   routes: [
     {
@@ -56,9 +67,13 @@ var router = new VueRouter({
       path: '/users',
       component: UserList
     },
+    {
+      path: '/users/:userid',
+      component: UserDetail
+    }
   ]
 })
-
+// ------------------------------------------------- instance -------------------------------------------------
 var app = new Vue ({
   router,
 }).$mount('#app')
