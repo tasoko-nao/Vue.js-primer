@@ -205,7 +205,8 @@ var router = new VueRouter({
     },
     {
       path: '/users/:userId',
-      component: UserDetail
+      component: UserDetail,
+      name: 'user-detail'
     },
     {
       path: '/login',
